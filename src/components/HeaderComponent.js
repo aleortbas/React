@@ -9,7 +9,7 @@ class Header extends Component {
         super(props);
         this.state = {
             isNavOpen: false,
-            isModalOpen: false
+            isModalOpen: false,
         };
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
@@ -30,7 +30,27 @@ class Header extends Component {
 
     handleLogin(event) {
         this.toggleModal();
-        alert("Username: " + this.userame.value + " Password: " + this.password.value + " Remeber me: " + this.remember.checked);
+
+        
+        if(this.userame.value.length < 10)
+            alert("Username shouldn't be less than 10: " + this.userame.value);
+
+        else if(this.password.value == "")
+            alert("Password shouldn't be empty");
+
+        else if(this.password.value == "password")
+            alert("Password can't be: " + this.password.value);
+
+        else if(this.password.value.length < 6)
+            alert("Password shouldn't be less than 6: " + this.password.value);
+
+        else if(this.password.value.length > 20)
+            alert("Password shouldn't be more than 20: " + this.password.value);
+
+        else {
+            alert("Username: " + this.userame.value + " Password: " + this.password.value + " Remeber me: " + this.remember.checked);
+        }
+
         event.preventDefault();
     }
 
@@ -98,7 +118,7 @@ class Header extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
+                                <Input type="text" id="password" name="password"
                                     innerRef={(input) => this.password = input}/>
                             </FormGroup>
                             <FormGroup check>
