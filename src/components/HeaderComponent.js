@@ -87,16 +87,17 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                             </Nav>
-                            <Nav className="ml-auto" navbar>
+                        </Collapse>
+                        <Nav className="justify-content-end">
                                 <NavItem>
                                     <Button outline onClick={this.toggleModal}>
                                         <span className="fa fa-sign-in fa-lg"></span> Login
                                     </Button>
                                 </NavItem>
                             </Nav>
-                        </Collapse>
                     </div>
                 </Navbar>
+
                 <Jumbotron>
                 <div className="container">
                     <div className="row row-header">
@@ -107,6 +108,7 @@ class Header extends Component {
                     </div>
                 </div>
                 </Jumbotron>
+
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
                     <ModalBody>
@@ -132,6 +134,7 @@ class Header extends Component {
                         </Form>
                     </ModalBody>
                 </Modal>
+                
             </React.Fragment>
         );
     }
