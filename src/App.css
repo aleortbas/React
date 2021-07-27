@@ -31,3 +31,7 @@ address {
 .navbar-dark {
   background-color: #512da8;
 }
+
+#submitComt {
+  margin-top: 4%;
+}
