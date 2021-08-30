@@ -4,6 +4,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbIte
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import reactDom from "react-dom";
+import { Loading } from "./LoadingComponent";
 
 const required = (val) => val && val.length;
 const maxLenght = (len) => (val) => !(val) || (val.length <= len);
@@ -199,11 +200,26 @@ class CommentForm extends Component{
     const DishDetail = (props) =>{
         const dish = props.dish
 
-        console.log(dish);
-        console.log('DishdetailComponent render invoked');
-
+        if(props.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if(props.errMess) {
+            return(
+                <div className="container">
+                    <div className="row">
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
         
-        if (dish == null) {
+        else if (dish == null) {
             return (<div></div>);
         }
         
