@@ -144,7 +144,8 @@ class CommentForm extends Component{
             return (
                 <div className='col-12 col-md-5 m-1'>
                     <Card>
-                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />                        <CardBody>
+                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />  
+                        <CardBody>
                             <CardTitle> {dish.name}</CardTitle>
                             <CardText> {dish.description} </CardText>
                         </CardBody>
