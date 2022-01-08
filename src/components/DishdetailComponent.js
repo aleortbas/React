@@ -167,44 +167,27 @@ class CommentForm extends Component{
         }
     }
 
-    function RenderComments({ dish, comments, postComment, dishId }){
+    function RenderComments({  comments, postComment, dishId }){
         if (comments == null) {
             return (<div></div>)
         }
-        const cmnts = comments.map(comment => {
-            return (
-                
-                <li key={comment.id}>
-                    <p>{comment.comment}</p>
-                    <p>-- {comment.author},
-                    &nbsp;
-                    {new Intl.DateTimeFormat('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: '2-digit'
-                    }).format(new Date(comment.date))}
-                    </p>
-                </li>
-
-            )
-        })
+       
         return (
             <div className='col-12 col-md-5 m-1'>
                 <h4> Comments </h4>
                 <ul className='list-unstyled'>
                 <Stagger in>
-                    {comments.map((comment) => {
-                        return (
-                            <Fade in>
-                                <li key={comment.id}>
-                                    <p>{comment.comment}</p>
-                                    <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comment.date)))}</p>
-                                </li>
-                            </Fade>
-                        );
-                    })}
-                </Stagger>
-                    {cmnts}
+                        {comments.map((comment) => {
+                            return (
+                                <Fade in>
+                                    <li key={comment.id}>
+                                        <p>{comment.comment}</p>
+                                        <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                                    </li>
+                                </Fade>
+                            );
+                        })}
+                        </Stagger>
                 </ul>
                 <CommentForm 
                     dishId={dishId} 
@@ -216,7 +199,6 @@ class CommentForm extends Component{
 
 
     const DishDetail = (props) =>{
-        const dish = props.dish
 
         if(props.isLoading) {
             return(

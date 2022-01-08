@@ -8,16 +8,16 @@ import { baseUrl } from '../shared/baseUrl';
 function RenderLeader({ leader }) {
     return(
         <div key={leader.id} className="container">
-            <Media>
                 <Media>
-                    <Media object src={leader.image} alt={leader.name} />
+                    <Media>
+                        <Media object src={baseUrl + leader.image} alt={leader.name} />
+                    </Media>
+                    <Media body className="">
+                        <Media heading>{leader.name}</Media>
+                        <p>{leader.designation}</p>
+                        <p>{leader.description}</p>
+                    </Media>
                 </Media>
-                <Media body className="">
-                    <Media heading>{leader.name}</Media>
-                    <p>{leader.designation}</p>
-                    <p>{leader.description}</p>
-                </Media>
-            </Media>
         </div>
     );
 }
@@ -27,7 +27,13 @@ function About (props){
 
     const leaders = props.leader.leaders.map((leader) => {
         return (
-            <RenderLeader leader={leader} />
+            <Stagger in>
+                <div>
+                    <Fade in>
+                        <RenderLeader leader={leader}/>
+                    </Fade>
+                </div>
+            </Stagger>
         );
     });
 
@@ -108,9 +114,7 @@ function About (props){
                 </div>
                 <div className="col-12">
                 <Media list>
-                      <Stagger in>
                         {leaders}
-                      </Stagger>
                    </Media> 
                 </div>
             </div>
