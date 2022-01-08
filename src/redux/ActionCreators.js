@@ -192,3 +192,10 @@ export const addLeaders = (leaders) => ({
     type: ActionTypes.ADD_LEADERS,
     payload: leaders
 });
+
+export const addFeedback = (feedback) => ({
+    type: ActionTypes.ADD_FEEDBACK, 
+    payload: feedback
+});
+
+
