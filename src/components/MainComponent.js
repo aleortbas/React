@@ -10,7 +10,7 @@ import About from './AboutComponent';
 
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+import { postComment, postFeedback, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -26,9 +26,13 @@ const mapStateToProps = state => {
 //Agregar commentario
 const mapDispatchToProps = dispatch => ({
   postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
-  fetchDishes: () => { dispatch(fetchDishes())},
-  resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
   fetchComments: () => dispatch(fetchComments()),
+
+  fetchDishes: () => { dispatch(fetchDishes())},
+
+  resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
+  postFeedback: ( firstName, lastName, telnum, email, message, contactType, agree) => dispatch(postFeedback( firstName, lastName, telnum, email, message, contactType, agree)),
+
   fetchPromos: () => dispatch(fetchPromos()),
   fetchLeaders: () => dispatch(fetchLeaders())
 });
@@ -93,7 +97,7 @@ render(){
           <Route path="/home" component={HomePage} />
           <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
           <Route path="/aboutus" component={AboutUsPage} />
-          <Route exact path="/contactus" component={() => <Contact resetFeedBackForm={this.props.resetFeedBackForm}/>} />
+          <Route exact path="/contactus" component={() => <Contact resetFeedBack={this.props.resetFeedBackForm} postFeedback={this.props.postFeedback}/>} />
           
           <Route path="/menu/:dishId" component={DishWithId} />
           <Redirect to="/home" />

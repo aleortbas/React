@@ -198,4 +198,42 @@ export const addFeedback = (feedback) => ({
     payload: feedback
 });
 
+export const postFeedback = ( firstName, lastName, telnum, email, message, contactType, agree) => (dispatch) =>{
+
+    const newFeedback = {
+        firstName: firstName,
+        lastName: lastName, 
+        telnum: telnum, 
+        email: email,
+        message: message,
+        contactType: contactType,
+        agree: agree
+    }
+    newFeedback.date = new Date().toISOString();
+    
+    return fetch(baseUrl + 'feedback', {
+        method: 'POST',
+        body: JSON.stringify(newFeedback),
+        headers: {
+            'Content-type': 'application/json'
+        }, 
+        credentials: 'same-origin'
+    })
+    .then(response => {
+        if(response.ok){
+            return response;
+        }
+        else{
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        throw error;
+    }) 
+    .then(response => response.json())
+    .then(response => dispatch(addFeedback(response)))
+    .catch(error =>  { console.log('post feedback', error.message); alert('Your feedback could not be posted\nError: '+error.message); });
+}
 
