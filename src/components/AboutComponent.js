@@ -1,6 +1,6 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
-import { FadeTransform, Fade, Stagger } from 'react-animation-components'
+import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media} from 'reactstrap';
+import { Fade, Stagger } from 'react-animation-components'
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';

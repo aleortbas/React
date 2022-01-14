@@ -35,10 +35,10 @@ class Header extends Component {
         if(this.userame.value.length < 10)
             alert("Username shouldn't be less than 10: " + this.userame.value);
 
-        else if(this.password.value == "")
+        else if(this.password.value === "")
             alert("Password shouldn't be empty");
 
-        else if(this.password.value == "password")
+        else if(this.password.value === "password")
             alert("Password can't be: " + this.password.value);
 
         else if(this.password.value.length < 6)
